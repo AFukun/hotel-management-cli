@@ -4,23 +4,13 @@
   "description": "",
   "main": "admin.js",
   "dependencies": {
-    "bignumber.js": "^9.0.0",
-    "inherits": "^2.0.4",
-    "core-util-is": "^1.0.3",
-    "mysql": "^2.18.1",
-    "process-nextick-args": "^2.0.1",
-    "isarray": "^1.0.0",
-    "readable-stream": "^2.3.7",
-    "safe-buffer": "^5.1.2",
-    "sqlstring": "^2.3.1",
-    "util-deprecate": "^1.0.2",
-    "string_decoder": "^1.1.1"
+    "mysql": "^2.18.1"
   },
   "devDependencies": {},
   "scripts": {
     "admin-app": "node admin.js",
     "customer-app": "node customer.js"
   },
-  "author": "",
+  "author": "AFukun",
   "license": "ISC"
 }
