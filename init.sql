@@ -2,28 +2,30 @@ drop database if exists hotel;
 create database hotel;
 use hotel;
 
-CREATE TABLE rooms (
-    id CHAR(3),
-    r_type CHAR(2) CHECK (r_type = '单' OR r_type = '双'),
-    price DECIMAL(5 , 2 ),
-    PRIMARY KEY (id)
+create table rooms (
+    id char(3),
+    r_type char(2) check (r_type = '单' or r_type = '双'),
+    price decimal(5 , 2 ),
+    primary key (id)
 );
 
-CREATE TABLE customers (
-    fullname VARCHAR(8) NOT NULL,
-    personal_id CHAR(18) NOT NULL,
-    sex CHAR(2) DEFAULT '男' CHECK (sex = '男' OR sex = '女'),
-    phone CHAR(11),
-    PRIMARY KEY (fullname)
+create table customers (
+    fullname varchar(8) not null,
+    sex char(2) default '男' check (sex = '男' or sex = '女'),
+    personal_id char(18) not null,
+    phone char(11),
+    primary key (personal_id)
 );
 
-CREATE TABLE orders (
-    c_name VARCHAR(16) NOT NULL,
-    room_id CHAR(3) NOT NULL,
-    FOREIGN KEY (c_name)
-        REFERENCES customers (fullname),
-    FOREIGN KEY (room_id)
-        REFERENCES rooms (id)
+create table orders (
+    personal_id char(18) not null,
+    room_id char(3) not null,
+    checkin date,
+    checkout date,
+    foreign key (personal_id)
+        references customers (personal_id),
+    foreign key (room_id)
+        references rooms (id)
 );
 
 insert into rooms values
@@ -35,13 +37,13 @@ insert into rooms values
 ('303','双','299.90');
 
 insert into customers values
-('张三','111111111111111111','男','00000000000'),
-('李四','222222222222222222','女','00000000000'),
-('王五','333333333333333333','男','00000000000'),
-('王六','444444444444444444','男','00000000000');
+('张三','男','111111111111111111','00000000000'),
+('李四','女','222222222222222222','00000000000'),
+('王五','男','333333333333333333','00000000000'),
+('王六','男','444444444444444444','00000000000');
 
 insert into orders values
-('张三','201'),
-('王五','203'),
-('王六','203'),
-('李四','302');
+('111111111111111111','201','2022-1-1','2022-1-2'),
+('333333333333333333','203','2022-2-1',null),
+('444444444444444444','203','2022-2-1',null),
+('222222222222222222','302','2022-1-2','2022-1-4');
